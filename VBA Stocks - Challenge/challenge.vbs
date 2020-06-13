@@ -3,7 +3,7 @@ Sub challenge()
 'Declare values
 Dim b As Integer
 Range("O2").Value = "Greatest % Increase"
-Range("O3").Value = "Smallest % Decrease"
+Range("O3").Value = "Greatest % Decrease"
 Range("O4").Value = "Greatest Total Volume"
 Range("P1").Value = "Ticker"
 Range("Q1").Value = "Value"

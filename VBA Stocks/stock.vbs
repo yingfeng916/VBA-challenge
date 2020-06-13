@@ -27,7 +27,7 @@ endRow = Cells(Rows.Count, 1).End(xlUp).Row
 For a = 2 To endRow
     If Cells(a + 1, 1).Value <> Cells(a, 1).Value Then
         Range("I" & rowIncrement).Value = Cells(a, 1).Value  'Write ticker value
-        Range("j" & rowIncrement).Value = Round(yearly_change, 2)  'Write yearly change value
+        Range("j" & rowIncrement).Value = Round(Cells(a, 6).Value - stored_open, 2)  'Write yearly change value
         If Range("j" & rowIncrement).Value > 0 Then 'Change colour according to +/-
             Range("j" & rowIncrement).Interior.ColorIndex = 4
         Else
@@ -35,7 +35,7 @@ For a = 2 To endRow
         End If
         Range("k" & rowIncrement).Value = ((Cells(a, 6).Value - stored_open) / stored_open) 'Write yearly change percentage value
         Range("k" & rowIncrement).NumberFormat = "0.00%"
-        Range("l" & rowIncrement).Value = total_volume 'write total volume
+        Range("l" & rowIncrement).Value = total_volume + Cells(a, 7).Value 'write total volume
         
         rowIncrement = rowIncrement + 1
         yearly_change = 0
@@ -46,7 +46,7 @@ For a = 2 To endRow
             stored_open = Cells(a, 3).Value 'Store open value if it's the first row for a ticker symbol
             newTickerRow = False
         End If
-        yearly_change = yearly_change + (Cells(a, 6).Value - Cells(a, 3).Value)
+        'yearly_change = yearly_change + (Cells(a, 6).Value - Cells(a, 3).Value)
         total_volume = total_volume + Cells(a, 7).Value
     End If
     
